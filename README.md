@@ -1,4 +1,4 @@
-# spid-wordpress-example
+# spid-wordpress-example-form
 
 Esempio di sito wordpress con plugin SPID e form precompilato.
 
