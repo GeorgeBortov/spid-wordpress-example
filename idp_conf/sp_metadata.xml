@@ -1,0 +1,12 @@
+<br />
+<b>Fatal error</b>:  Uncaught Error: Class 'RobRichards\XMLSecLibs\XMLSecurityKey' not found in /var/www/html/wp-content/plugins/spid-wordpress/spid-php-lib/src/Spid/Saml/SignatureUtils.php:19
+Stack trace:
+#0 /var/www/html/wp-content/plugins/spid-wordpress/spid-php-lib/src/Spid/Saml.php(127): Italia\Spid\Spid\Saml\SignatureUtils::signXml('&lt;md:EntityDescr...', Array)
+#1 [internal function]: Italia\Spid\Spid\Saml-&gt;getSPMetadata()
+#2 /var/www/html/wp-content/plugins/spid-wordpress/spid-php-lib/src/Sp.php(36): call_user_func_array(Array, Array)
+#3 /var/www/html/wp-content/plugins/spid-wordpress/includes/class-spid-core.php(100): Italia\Spid\Sp-&gt;__call('getSPMetadata', Array)
+#4 /var/www/html/wp-includes/class-wp-hook.php(286): SPID_Core-&gt;filterAuthenticate(Object(WP_Error), '', '')
+#5 /var/www/html/wp-includes/plugin.php(203): WP_Hook-&gt;apply_filters(Object(WP_Error), Array)
+#6 /var/www/html/wp-includes/pluggable.php(532): apply_filters('authenticate', NULL, '', '')
+#7 /var/www/html/wp-includes/user.php(90): wp_authenticate('', '')
+#8 in <b>/var/www/html/wp-content/plugins/spid-wordpress/spid-php-lib/src/Spid/Saml/SignatureUtils.php</b> on line <b>19</b><br />

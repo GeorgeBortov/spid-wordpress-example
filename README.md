@@ -60,6 +60,61 @@ Testato su: amd64 Debian 9.5 (stretch, current stable) con PHP 7.0.
 
 - [contact-form-7-to-database-extension](https://wordpress.org/plugins/contact-form-7-database-extension/) Versione 1.2.4, per salvare i form inviati a DB e mostrarli in una tabella.
 
+## Installazione con docker-compose
+
+The quickest way to start an instance of the WordPress with the **SPID WordpPress** plugin and the [SPID test Identity Provider spid-testenv2](https://github.com/italia/spid-testenv2) all configured and set up is using Docker Compose.
+
+You will need:
+- Docker CE
+- Docker Compose
+- git, wget, curl, make and openssl
+- on macOS to make sure the `envsubst` command [is available](https://stackoverflow.com/questions/23620827/envsubst-command-not-found-on-mac-os-x-10-8):
+```sh
+brew install gettext
+brew link --force gettext
+```
+
+To make the image building process faster, pull in advance the required docker images (this may take some time):
+```sh
+docker pull wordpress:latest
+docker pull mysql:5.7
+docker pull italia/spid-testenv2
+docker pull wordpress:cli
+```
+
+Before starting up, edit the `.env` file if you wish to change the host names.
+
+To start up:
+```sh
+git clone https://github.com/simevo/spid-wordpress.git spid-wordpress
+make
+docker-compose up --build
+```
+
+Wait until messages stop, then in a separate shell issue the command:
+```sh
+make post
+```
+
+Your brand new wordpress site will be at: http://localhost:8099; log in as admin with user = `test2` and password = `test3`.
+
+Your SPID test IdP will be at: http://localhost:8088
+
+To deactivate / reactivate the plugin use:
+```sh
+make activate
+make deactivate
+```
+
+To refresh the SP metadata to the IdP and vice versa use:
+```sh
+make refresh
+```
+
+To remove the containers and default network, but preserve the database: `docker-compose down`
+
+To remove all: `docker-compose down --volumes`
+
 ### Demo
 
 Si crea un modulo CF come:
