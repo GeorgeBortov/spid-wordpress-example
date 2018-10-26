@@ -1,5 +1,8 @@
 idp_conf/idp.crt
 idp_conf/idp.key
+idp_conf/config.yaml
+idp_conf/users.json
+idp_conf/sp_metadata.xml
 sp_conf/wp.key
 sp_conf/wp.crt
 sp_conf/idp_metadata/*.xml
