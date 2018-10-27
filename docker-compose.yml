@@ -1,41 +1,42 @@
-version: '3.3'
+version: "3.3"
 
 services:
   db:
-    image: mysql:5.7
+    image: mariadb:latest
     volumes:
-      - db_data:/var/lib/mysql
+      - dbdata:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: somewordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: "wp"
+      MYSQL_USER: "wp"
+      MYSQL_PASSWORD: "wp"
+    networks:
+      - "back"
 
   wp:
-    depends_on:
-       - db
-    build:
-      context: .
-      dockerfile: Dockerfile
     env_file:
       - .env
+    image: "wordpress:${WP_VERSION}"
+    depends_on:
+       - db
     ports:
-      - '8099:80'
+      - "8099:80"
     restart: always
     environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_HOST: "db:3306"
+      WORDPRESS_DB_NAME: "wp"
+      WORDPRESS_DB_USER: "wp"
+      WORDPRESS_DB_PASSWORD: "wp"
     volumes:
-      - type: bind
-        source: ./spid-wordpress
-        target: /var/www/html/wp-content/plugins/spid-wordpress
-      - type: bind
-        source: ./sp_conf
-        target: /var/www/html/spid-conf
+      - "./sp_conf:/var/www/html/spid-conf:rw"
+      - "./spid-wordpress:/var/www/html/wp-content/plugins/spid-wordpress:ro"
+    networks:
+      - "front"
+      - "back"
 
-  spid-testenv2:
+  idp:
     image: italia/spid-testenv2
     ports:
       - 8088:8088
@@ -44,6 +45,13 @@ services:
       - type: bind
         source: ./idp_conf
         target: /app/conf
+    networks:
+      - "idp"
 
 volumes:
-  db_data:
+  dbdata: {}
+
+networks:
+  front: {}
+  back: {}
+  idp: {}
