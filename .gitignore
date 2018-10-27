@@ -7,3 +7,4 @@ sp_conf/wp.key
 sp_conf/wp.crt
 sp_conf/idp_metadata/*.xml
 spid-wordpress
+/vendor

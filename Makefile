@@ -11,7 +11,7 @@ all:
 post: complete activate refresh
 
 complete:
-	wget --spider --timeout=15 --retry-connrefused "${SP_ENTITYID}"
+	wget --spider --timeout=60 --retry-connrefused "${SP_ENTITYID}"
 	docker run -it --rm --volumes-from $(shell docker ps -f "ancestor=wordpress:${WP_VERSION}" --format "{{.ID}}") --network container:$(shell docker ps -f "ancestor=wordpress:${WP_VERSION}" --format "{{.ID}}") wordpress:cli core install  --path="/var/www/html" --url="${SP_ENTITYID}" --title="test1" --admin_user=test2 --admin_password=test3 --admin_email=foo@bar.com
 
 activate:
@@ -19,7 +19,7 @@ activate:
 
 refresh:
 	curl -o idp_conf/sp_metadata.xml "${SP_ENTITYID}/wp-login.php?sso=spid&metadata"
-	wget --spider --timeout=15 --retry-connrefused "${IDP_ENTITYID}"
+	wget --spider --timeout=60 --retry-connrefused "${IDP_ENTITYID}"
 	curl -o sp_conf/idp_metadata/testenv2.xml "${IDP_ENTITYID}/metadata"
 	docker restart $(shell docker ps -f "ancestor=italia/spid-testenv2" --format "{{.ID}}")
 
@@ -32,6 +32,9 @@ sp_certs:
 
 download_metadata:
 	./spid-wordpress/spid-php-lib/bin/download_idp_metadata.php sp_conf/idp_metadata
+
+test:
+	phpunit tests/ConfigurationTest.php 
 
 clean:
 	rm -f idp_conf/users.json
