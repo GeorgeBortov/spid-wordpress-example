@@ -62,23 +62,21 @@ Testato su: amd64 Debian 9.5 (stretch, current stable) con PHP 7.0.
 
 ## Installazione con docker-compose
 
-The quickest way to start an instance of the WordPress with the **SPID WordpPress** plugin and the [SPID test Identity Provider spid-testenv2](https://github.com/italia/spid-testenv2) all configured and set up is using Docker Compose.
+The quickest way to start an instance of the WordPress with the **SPID WordPress** plugin and the [SPID test Identity Provider spid-testenv2](https://github.com/italia/spid-testenv2) all configured and set up is using Docker Compose.
 
 You will need:
 - Docker CE
 - Docker Compose
 - git, wget, curl, make and openssl
 - on macOS to make sure the `envsubst` command [is available](https://stackoverflow.com/questions/23620827/envsubst-command-not-found-on-mac-os-x-10-8):
-```sh
-brew install gettext
-brew link --force gettext
-```
+    ```sh
+    brew install gettext
+    brew link --force gettext
+    ```
 
 To make the image building process faster, pull in advance the required docker images (this may take some time):
 ```sh
-docker pull wordpress:latest
-docker pull mysql:5.7
-docker pull italia/spid-testenv2
+docker-compose pull
 docker pull wordpress:cli
 ```
 
