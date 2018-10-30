@@ -11,7 +11,7 @@ Demo WordPress site with SPID plugin
 
 ## Installation with con docker-compose
 
-The quickest way to start an instance of the WordPress with the **SPID WordPress** plugin and the [SPID test Identity Provider spid-testenv2](https://github.com/italia/spid-testenv2) all configured and set up is using Docker Compose.
+The quickest way to start an instance of WordPress with the [**SPID WordPress** plugin](https://github.com/simevo/spid-wordpress) and the [SPID test Identity Provider spid-testenv2](https://github.com/italia/spid-testenv2) all configured and set up is using Docker Compose.
 
 You will need:
 - Docker CE
