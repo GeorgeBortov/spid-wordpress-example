@@ -82,8 +82,10 @@ docker pull wordpress:cli
 
 Before starting up, edit the `.env` file if you wish to change the host names.
 
-To start up:
+To start up clone the 2 repos one inside the other:
 ```sh
+git clone https://github.com/simevo/spid-wordpress-example-form
+cd spid-wordpress-example-form
 git clone https://github.com/simevo/spid-wordpress.git spid-wordpress
 make
 docker-compose up --build
