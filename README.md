@@ -1,3 +1,10 @@
+<img src="https://github.com/italia/spid-graphics/blob/master/spid-logos/spid-logo-b-lb.png" alt="SPID" data-canonical-src="https://github.com/italia/spid-graphics/blob/master/spid-logos/spid-logo-b-lb.png" width="500" height="98" />
+
+[![Join the #spid-wordpress channel](https://img.shields.io/badge/Slack%20channel-%23spid--wordpress-blue.svg?logo=slack)](https://developersitalia.slack.com/messages/C7ESTBB98)
+[![Get invited](https://slack.developers.italia.it/badge.svg)](https://slack.developers.italia.it/)
+[![SPID on forum.italia.it](https://img.shields.io/badge/Forum-SPID-blue.svg)](https://forum.italia.it/c/spid)
+[![Build Status](https://travis-ci.com/simevo/spid-wordpress-example-form.svg?branch=master)](https://travis-ci.com/simevo/spid-wordpress-example-form)
+
 # spid-wordpress-example
 
 Demo WordPress site with SPID plugin
@@ -26,9 +33,9 @@ Before starting up, edit the `.env` file if you wish to change the host names.
 
 To start up clone the 2 repos one inside the other:
 ```sh
-git clone https://github.com/simevo/spid-wordpress-example-form
-cd spid-wordpress-example-form
-git clone https://github.com/simevo/spid-wordpress.git spid-wordpress
+git clone https://github.com/simevo/spid-wordpress-example
+cd spid-wordpress-example
+git clone https://github.com/simevo/spid-wordpress.git spid-wordpress # yes ! clone spid-wordpress inside spid-wordpress-example !
 make
 docker-compose up --build
 ```
@@ -38,7 +45,7 @@ Wait until messages stop, then in a separate shell issue the command:
 make post
 ```
 
-Your brand new wordpress site will be at: http://localhost:8099; log in as admin with user = `test2` and password = `test3`.
+Your brand new wordpress site will be at: http://localhost:8099; log in at http://localhost:8099/wp-login.php as admininstrator with user = `test2` and password = `test3`.
 
 Your SPID test IdP will be at: http://localhost:8088
 
