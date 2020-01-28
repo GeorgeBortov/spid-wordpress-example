@@ -7,8 +7,7 @@ services:
       - dbdata:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ROOT_PASSWORD: "password"
       MYSQL_DATABASE: "wp"
       MYSQL_USER: "wp"
       MYSQL_PASSWORD: "wp"
